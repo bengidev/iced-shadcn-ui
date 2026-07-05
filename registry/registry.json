@@ -29,10 +29,10 @@
       "features": []
     },
     {
-      "name": "badge",
+      "name": "input",
       "type": "registry:component",
       "files": [
-        { "path": "styles/new-york/badge.rs.template", "target": "badge.rs" }
+        { "path": "styles/new-york/input.rs.template", "target": "input.rs" }
       ],
       "registryDependencies": ["theme", "utils"],
       "features": []
@@ -47,10 +47,73 @@
       "features": []
     },
     {
+      "name": "card",
+      "type": "registry:component",
+      "files": [
+        { "path": "styles/new-york/card.rs.template", "target": "card.rs" }
+      ],
+      "registryDependencies": ["theme", "utils"],
+      "features": []
+    },
+    {
+      "name": "badge",
+      "type": "registry:component",
+      "files": [
+        { "path": "styles/new-york/badge.rs.template", "target": "badge.rs" }
+      ],
+      "registryDependencies": ["theme", "utils"],
+      "features": []
+    },
+    {
       "name": "separator",
       "type": "registry:component",
       "files": [
         { "path": "styles/new-york/separator.rs.template", "target": "separator.rs" }
+      ],
+      "registryDependencies": ["theme", "utils"],
+      "features": []
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:component",
+      "files": [
+        { "path": "styles/new-york/checkbox.rs.template", "target": "checkbox.rs" }
+      ],
+      "registryDependencies": ["theme", "utils"],
+      "features": []
+    },
+    {
+      "name": "switch",
+      "type": "registry:component",
+      "files": [
+        { "path": "styles/new-york/switch.rs.template", "target": "switch.rs" }
+      ],
+      "registryDependencies": ["theme", "utils"],
+      "features": []
+    },
+    {
+      "name": "sidebar",
+      "type": "registry:component",
+      "files": [
+        { "path": "styles/new-york/sidebar.rs.template", "target": "sidebar.rs" }
+      ],
+      "registryDependencies": ["theme", "utils"],
+      "features": []
+    },
+    {
+      "name": "scroll-area",
+      "type": "registry:component",
+      "files": [
+        { "path": "styles/new-york/scroll-area.rs.template", "target": "scroll-area.rs" }
+      ],
+      "registryDependencies": ["theme", "utils"],
+      "features": []
+    },
+    {
+      "name": "table",
+      "type": "registry:component",
+      "files": [
+        { "path": "styles/new-york/table.rs.template", "target": "table.rs" }
       ],
       "registryDependencies": ["theme", "utils"],
       "features": []
@@ -74,28 +137,10 @@
       "features": []
     },
     {
-      "name": "input",
+      "name": "avatar",
       "type": "registry:component",
       "files": [
-        { "path": "styles/new-york/input.rs.template", "target": "input.rs" }
-      ],
-      "registryDependencies": ["theme", "utils"],
-      "features": []
-    },
-    {
-      "name": "checkbox",
-      "type": "registry:component",
-      "files": [
-        { "path": "styles/new-york/checkbox.rs.template", "target": "checkbox.rs" }
-      ],
-      "registryDependencies": ["theme", "utils"],
-      "features": []
-    },
-    {
-      "name": "switch",
-      "type": "registry:component",
-      "files": [
-        { "path": "styles/new-york/switch.rs.template", "target": "switch.rs" }
+        { "path": "styles/new-york/avatar.rs.template", "target": "avatar.rs" }
       ],
       "registryDependencies": ["theme", "utils"],
       "features": []
