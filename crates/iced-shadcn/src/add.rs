@@ -1,4 +1,4 @@
-use crate::cargo_merge::merge_iced_dependency;
+use crate::cargo_merge::{merge_iced_dependency, merge_lucide_icons_dependency};
 use crate::config::Config;
 use crate::error::CliError;
 use crate::patch::patch_mod_rs;
@@ -51,7 +51,10 @@ pub fn run(components: Vec<String>) -> Result<(), CliError> {
     let cargo_path = project_root.join("Cargo.toml");
     let cargo = fs::read_to_string(&cargo_path).map_err(|e| CliError::Io(e.to_string()))?;
     let features = registry.collect_features(&order);
-    let merged = merge_iced_dependency(&cargo, &config.iced_version, &features);
+    let mut merged = merge_iced_dependency(&cargo, &config.iced_version, &features);
+    if order.iter().any(|name| name == "icons") {
+        merged = merge_lucide_icons_dependency(&merged);
+    }
     fs::write(&cargo_path, merged).map_err(|e| CliError::Io(e.to_string()))?;
 
     println!("Added: {}", written.join(", "));
