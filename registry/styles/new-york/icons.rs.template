@@ -1,0 +1,67 @@
+//! [Lucide](https://lucide.dev/) icons for iced via the `lucide-icons` crate.
+//!
+//! Load the font once when starting your application:
+//!
+//! ```rust
+//! use {{ui_path}}::icons::LUCIDE_FONT_BYTES;
+//!
+//! application(...)
+//!     .font(LUCIDE_FONT_BYTES)
+//!     .run()
+//! ```
+//!
+//! ```rust
+//! use {{ui_path}}::icons::{self, Icon};
+//!
+//! icons::themed_icon(Icon::Search, 16.0)
+//! ```
+
+pub use lucide_icons::{Icon, LUCIDE_FONT_BYTES};
+
+use crate::{{ui_path}}::theme::palette;
+use iced::widget::text;
+use iced::{Color, Element, Theme};
+
+const LUCIDE_FONT: iced::Font = iced::Font::with_name("lucide");
+
+/// Raw lucide glyph at a fixed size (no theme color).
+pub fn icon<'a, Message: 'a>(icon: Icon, size: f32) -> Element<'a, Message, Theme> {
+    text(icon.unicode().to_string())
+        .font(LUCIDE_FONT)
+        .size(size)
+        .into()
+}
+
+/// Lucide icon using the current theme foreground color.
+pub fn themed_icon<'a, Message: 'a>(icon: Icon, size: f32) -> Element<'a, Message, Theme> {
+    text(icon.unicode().to_string())
+        .font(LUCIDE_FONT)
+        .size(size)
+        .style(|theme| text::Style {
+            color: Some(palette(theme).foreground),
+        })
+        .into()
+}
+
+/// Lucide icon with an explicit color (e.g. sidebar or button variants).
+pub fn icon_with_color<'a, Message: 'a>(
+    icon: Icon,
+    size: f32,
+    color: Color,
+) -> Element<'a, Message, Theme> {
+    text(icon.unicode().to_string())
+        .font(LUCIDE_FONT)
+        .size(size)
+        .style(move |_theme| text::Style { color: Some(color) })
+        .into()
+}
+
+/// Parse a [lucide.dev](https://lucide.dev/) kebab-case icon name.
+pub fn themed_icon_named<'a, Message: 'a>(
+    name: &str,
+    size: f32,
+) -> Option<Element<'a, Message, Theme>> {
+    Icon::try_from(name)
+        .ok()
+        .map(|icon| themed_icon(icon, size))
+}

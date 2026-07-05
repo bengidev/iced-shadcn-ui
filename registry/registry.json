@@ -20,12 +20,21 @@
       "registryDependencies": ["theme"]
     },
     {
+      "name": "icons",
+      "type": "registry:lib",
+      "files": [
+        { "path": "styles/new-york/icons.rs.template", "target": "icons.rs" }
+      ],
+      "registryDependencies": ["theme"],
+      "features": []
+    },
+    {
       "name": "button",
       "type": "registry:component",
       "files": [
         { "path": "styles/new-york/button.rs.template", "target": "button.rs" }
       ],
-      "registryDependencies": ["theme", "utils"],
+      "registryDependencies": ["theme", "utils", "icons"],
       "features": []
     },
     {
@@ -97,7 +106,7 @@
       "files": [
         { "path": "styles/new-york/sidebar.rs.template", "target": "sidebar.rs" }
       ],
-      "registryDependencies": ["theme", "utils"],
+      "registryDependencies": ["theme", "utils", "icons"],
       "features": []
     },
     {
