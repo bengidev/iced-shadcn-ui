@@ -96,7 +96,23 @@ my-app/
 
 ## Cargo.toml changes
 
-`add` ensures your `Cargo.toml` includes iced with the features required by added components (typically `advanced`, `tokio`, and `wgpu`). You do not need to add a dependency on `iced-shadcn` — components are copied source, not a library crate.
+`add` ensures your `Cargo.toml` includes iced with the features required by added components (typically `advanced`, `tokio`, and `wgpu`). Adding `icons`, `button`, or `sidebar` also adds [`lucide-icons`](https://crates.io/crates/lucide-icons) for [Lucide](https://lucide.dev/) icon support.
+
+You do not need to add a dependency on `iced-shadcn` — components are copied source, not a library crate.
+
+### Lucide font (required for icons)
+
+If your project uses icons, load the bundled font once at startup:
+
+```rust
+use ui::icons::LUCIDE_FONT_BYTES;
+
+iced::application(App::default, update, view)
+    .font(LUCIDE_FONT_BYTES)
+    .run()
+```
+
+See [icons.md](components/icons.md) for usage.
 
 ## Using components
 

@@ -32,9 +32,11 @@ The first `add` creates `iced-shadcn.toml`, copies `theme.rs` and `utils.rs`, pa
 | Scroll area | `scroll-area` |
 | Table | `table` |
 | Sidebar | `sidebar` |
+| Icons (Lucide) | `icons` |
 
 ```bash
-iced-shadcn list          # show all available components
+iced-shadcn add icons         # Lucide icon helpers (https://lucide.dev)
+iced-shadcn list              # show all available components
 iced-shadcn add card badge
 ```
 

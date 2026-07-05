@@ -39,6 +39,23 @@ button("Save")
 | `Lg` | Large |
 | `Icon` | Square icon button |
 
+## Icon buttons (Lucide)
+
+Requires `icons` (added automatically with `button`):
+
+```rust
+use lucide_icons::Icon;
+use ui::button::{icon_button, button_with_icon, ButtonVariant};
+
+icon_button(Icon::Plus).on_press(Message::Add).into_button()
+
+button_with_icon(Icon::Download, "Download")
+    .variant(ButtonVariant::Outline)
+    .into_button()
+```
+
+See [icons.md](icons.md) and [lucide.dev](https://lucide.dev/).
+
 ## Example
 
 ```rust
