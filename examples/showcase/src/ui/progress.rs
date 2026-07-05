@@ -1,0 +1,16 @@
+use iced::widget::progress_bar;
+use iced::{Element, Theme};
+use crate::ui::theme::palette;
+
+pub fn progress<'a, Message: 'a>(value: f32) -> Element<'a, Message, Theme> {
+    progress_bar(0.0..=100.0, value)
+        .style(|theme| {
+            let p = palette(theme);
+            progress_bar::Style {
+                background: iced::Background::Color(p.secondary),
+                bar: iced::Background::Color(p.primary),
+                border: iced::Border::default(),
+            }
+        })
+        .into()
+}

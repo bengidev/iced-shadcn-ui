@@ -1,0 +1,15 @@
+use iced::widget::container;
+use iced::{Background, Element, Length, Theme};
+use crate::{{ui_path}}::theme::palette;
+
+pub fn skeleton<'a, Message: 'a>(width: f32, height: f32) -> Element<'a, Message, Theme> {
+    container(iced::widget::Space::new().width(Length::Fixed(width)).height(Length::Fixed(height)))
+        .style(|theme| {
+            let p = palette(theme);
+            container::Style {
+                background: Some(Background::Color(p.muted)),
+                ..Default::default()
+            }
+        })
+        .into()
+}

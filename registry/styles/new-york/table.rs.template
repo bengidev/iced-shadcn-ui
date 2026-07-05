@@ -1,0 +1,14 @@
+use iced::widget::{table, text};
+use iced::Element;
+
+pub fn table_view<'a, Message: 'a, Row: Clone>(
+    columns: Vec<table::Column<'a, Message>>,
+    rows: &[Row],
+    render_row: impl Fn(&Row) -> Vec<Element<'a, Message>> + 'a,
+) -> Element<'a, Message> {
+    table(columns, rows, render_row).into()
+}
+
+pub fn text_cell<'a, Message: 'a>(value: &str) -> Element<'a, Message> {
+    text(value).into()
+}

@@ -1,0 +1,157 @@
+{
+  "name": "iced-shadcn",
+  "homepage": "https://github.com/bengidev/iced-shadcn-ui",
+  "items": [
+    {
+      "name": "theme",
+      "type": "registry:theme",
+      "files": [
+        { "path": "styles/new-york/theme.rs.template", "target": "theme.rs" }
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "files": [
+        { "path": "styles/new-york/utils.rs.template", "target": "utils.rs" }
+      ],
+      "registryDependencies": ["theme"]
+    },
+    {
+      "name": "icons",
+      "type": "registry:lib",
+      "files": [
+        { "path": "styles/new-york/icons.rs.template", "target": "icons.rs" }
+      ],
+      "registryDependencies": ["theme"],
+      "features": []
+    },
+    {
+      "name": "button",
+      "type": "registry:component",
+      "files": [
+        { "path": "styles/new-york/button.rs.template", "target": "button.rs" }
+      ],
+      "registryDependencies": ["theme", "utils", "icons"],
+      "features": []
+    },
+    {
+      "name": "input",
+      "type": "registry:component",
+      "files": [
+        { "path": "styles/new-york/input.rs.template", "target": "input.rs" }
+      ],
+      "registryDependencies": ["theme", "utils"],
+      "features": []
+    },
+    {
+      "name": "label",
+      "type": "registry:component",
+      "files": [
+        { "path": "styles/new-york/label.rs.template", "target": "label.rs" }
+      ],
+      "registryDependencies": ["theme", "utils"],
+      "features": []
+    },
+    {
+      "name": "card",
+      "type": "registry:component",
+      "files": [
+        { "path": "styles/new-york/card.rs.template", "target": "card.rs" }
+      ],
+      "registryDependencies": ["theme", "utils"],
+      "features": []
+    },
+    {
+      "name": "badge",
+      "type": "registry:component",
+      "files": [
+        { "path": "styles/new-york/badge.rs.template", "target": "badge.rs" }
+      ],
+      "registryDependencies": ["theme", "utils"],
+      "features": []
+    },
+    {
+      "name": "separator",
+      "type": "registry:component",
+      "files": [
+        { "path": "styles/new-york/separator.rs.template", "target": "separator.rs" }
+      ],
+      "registryDependencies": ["theme", "utils"],
+      "features": []
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:component",
+      "files": [
+        { "path": "styles/new-york/checkbox.rs.template", "target": "checkbox.rs" }
+      ],
+      "registryDependencies": ["theme", "utils"],
+      "features": []
+    },
+    {
+      "name": "switch",
+      "type": "registry:component",
+      "files": [
+        { "path": "styles/new-york/switch.rs.template", "target": "switch.rs" }
+      ],
+      "registryDependencies": ["theme", "utils"],
+      "features": []
+    },
+    {
+      "name": "sidebar",
+      "type": "registry:component",
+      "files": [
+        { "path": "styles/new-york/sidebar.rs.template", "target": "sidebar.rs" }
+      ],
+      "registryDependencies": ["theme", "utils", "icons"],
+      "features": []
+    },
+    {
+      "name": "scroll-area",
+      "type": "registry:component",
+      "files": [
+        { "path": "styles/new-york/scroll-area.rs.template", "target": "scroll_area.rs" }
+      ],
+      "registryDependencies": ["theme", "utils"],
+      "features": []
+    },
+    {
+      "name": "table",
+      "type": "registry:component",
+      "files": [
+        { "path": "styles/new-york/table.rs.template", "target": "table.rs" }
+      ],
+      "registryDependencies": ["theme", "utils"],
+      "features": []
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:component",
+      "files": [
+        { "path": "styles/new-york/skeleton.rs.template", "target": "skeleton.rs" }
+      ],
+      "registryDependencies": ["theme", "utils"],
+      "features": []
+    },
+    {
+      "name": "progress",
+      "type": "registry:component",
+      "files": [
+        { "path": "styles/new-york/progress.rs.template", "target": "progress.rs" }
+      ],
+      "registryDependencies": ["theme", "utils"],
+      "features": []
+    },
+    {
+      "name": "avatar",
+      "type": "registry:component",
+      "files": [
+        { "path": "styles/new-york/avatar.rs.template", "target": "avatar.rs" }
+      ],
+      "registryDependencies": ["theme", "utils"],
+      "features": []
+    }
+  ]
+}

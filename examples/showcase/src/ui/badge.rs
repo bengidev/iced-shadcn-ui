@@ -1,0 +1,30 @@
+//! shadcn/ui Badge — inline status label.
+
+use crate::ui::theme::{palette, ShadcnPalette};
+use crate::ui::utils::border;
+use iced::widget::{container, text, Container};
+use iced::{Background, Element, Theme};
+
+#[derive(Clone, Copy)]
+pub enum BadgeVariant { Default, Secondary, Destructive, Outline }
+
+pub fn badge<'a, Message: 'a>(label: &'a str, variant: BadgeVariant) -> Element<'a, Message, Theme> {
+    container(text(label).size(12.0))
+        .padding([2, 8])
+        .style(move |theme| {
+            let p = palette(theme);
+            let (bg, fg, bc) = match variant {
+                BadgeVariant::Default => (p.primary, p.primary_foreground, p.primary),
+                BadgeVariant::Secondary => (p.secondary, p.secondary_foreground, p.secondary),
+                BadgeVariant::Destructive => (p.destructive, p.foreground, p.destructive),
+                BadgeVariant::Outline => (p.background, p.foreground, p.border),
+            };
+            container::Style {
+                background: Some(Background::Color(bg)),
+                text_color: Some(fg),
+                border: border(bc, if matches!(variant, BadgeVariant::Outline) { 1.0 } else { 0.0 }, p.radius_lg),
+                ..Default::default()
+            }
+        })
+        .into()
+}
