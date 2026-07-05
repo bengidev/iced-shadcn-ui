@@ -10,6 +10,12 @@ pub struct Config {
     pub ui_path: PathBuf,
     pub iced_version: String,
     pub registry_url: String,
+    #[serde(default = "default_registry_branch")]
+    pub registry_branch: String,
+}
+
+fn default_registry_branch() -> String {
+    "main".into()
 }
 
 impl Default for Config {
@@ -20,6 +26,7 @@ impl Default for Config {
             ui_path: PathBuf::from("src/ui"),
             iced_version: "0.14".into(),
             registry_url: "https://github.com/bengidev/iced-shadcn-ui".into(),
+            registry_branch: default_registry_branch(),
         }
     }
 }
@@ -30,6 +37,12 @@ impl Config {
             .to_string_lossy()
             .trim_start_matches("src/")
             .replace('/', "::")
+    }
+
+    pub fn load(project_root: &Path) -> Result<Self, ConfigError> {
+        let path = project_root.join(CONFIG_FILE);
+        let contents = std::fs::read_to_string(&path)?;
+        Ok(toml::from_str(&contents)?)
     }
 
     pub fn load_or_create(project_root: &Path) -> Result<(Self, PathBuf), ConfigError> {
@@ -66,5 +79,6 @@ mod tests {
         assert_eq!(parsed.style, "new-york");
         assert_eq!(parsed.ui_path, PathBuf::from("src/ui"));
         assert_eq!(parsed.iced_version, "0.14");
+        assert_eq!(parsed.registry_branch, "main");
     }
 }

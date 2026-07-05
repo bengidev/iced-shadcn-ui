@@ -1,5 +1,4 @@
 {
-  "$schema": "./schema.json",
   "name": "iced-shadcn",
   "homepage": "https://github.com/bengidev/iced-shadcn-ui",
   "items": [

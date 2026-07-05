@@ -7,8 +7,7 @@ use std::fs;
 
 pub fn run(component: String) -> Result<(), CliError> {
     let project_root = std::env::current_dir().map_err(|e| CliError::Io(e.to_string()))?;
-    let (config, _) = Config::load_or_create(&project_root)
-        .map_err(|e| CliError::Message(e.to_string()))?;
+    let config = Config::load(&project_root).map_err(|e| CliError::Message(e.to_string()))?;
     let registry = load_registry(&config)?;
     let item = registry
         .item(&component)

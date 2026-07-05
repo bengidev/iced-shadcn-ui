@@ -1,16 +1,15 @@
 use crate::error::CliError;
-use std::path::Path;
 
-pub fn registry_json_url(registry_url: &str) -> String {
+pub fn registry_json_url(registry_url: &str, branch: &str) -> String {
     format!(
-        "{}/main/registry/registry.json",
+        "{}/{branch}/registry/registry.json",
         registry_url.replace("https://github.com/", "https://raw.githubusercontent.com/")
     )
 }
 
-pub fn template_url(registry_url: &str, template_path: &str) -> String {
+pub fn template_url(registry_url: &str, branch: &str, template_path: &str) -> String {
     format!(
-        "{}/main/registry/{}",
+        "{}/{branch}/registry/{}",
         registry_url.replace("https://github.com/", "https://raw.githubusercontent.com/"),
         template_path
     )
@@ -25,23 +24,20 @@ pub fn fetch_text(url: &str) -> Result<String, CliError> {
         .map_err(|e| CliError::Network(e.to_string()))
 }
 
-pub fn load_registry_from_disk(path: &Path) -> Result<String, CliError> {
-    std::fs::read_to_string(path).map_err(|e| CliError::Io(e.to_string()))
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
     fn builds_raw_github_urls() {
-        let url = registry_json_url("https://github.com/bengidev/iced-shadcn-ui");
+        let url = registry_json_url("https://github.com/bengidev/iced-shadcn-ui", "main");
         assert_eq!(
             url,
             "https://raw.githubusercontent.com/bengidev/iced-shadcn-ui/main/registry/registry.json"
         );
         let tpl = template_url(
             "https://github.com/bengidev/iced-shadcn-ui",
+            "main",
             "styles/new-york/button.rs.template",
         );
         assert!(tpl.ends_with("/registry/styles/new-york/button.rs.template"));

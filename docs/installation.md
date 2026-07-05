@@ -35,11 +35,15 @@ iced-shadcn add card input checkbox
 
 ### List available components
 
+Requires `iced-shadcn.toml` (created by the first `add`):
+
 ```bash
 iced-shadcn list
 ```
 
 ### Preview changes without writing
+
+Requires `iced-shadcn.toml`:
 
 ```bash
 iced-shadcn diff button
@@ -55,6 +59,7 @@ base_color = "neutral"
 ui_path = "src/ui"
 iced_version = "0.14"
 registry_url = "https://github.com/bengidev/iced-shadcn-ui"
+registry_branch = "main"
 ```
 
 | Field | Description |
@@ -64,6 +69,7 @@ registry_url = "https://github.com/bengidev/iced-shadcn-ui"
 | `ui_path` | Directory where component `.rs` files are written. Default: `src/ui`. |
 | `iced_version` | iced version merged into `Cargo.toml`. Default: `0.14`. |
 | `registry_url` | GitHub repo URL used to fetch `registry.json` and templates. |
+| `registry_branch` | Git branch used for raw registry fetches. Default: `main`. |
 
 ### Custom `ui_path`
 

@@ -11,7 +11,7 @@ pub fn load_registry(config: &Config) -> Result<Registry, CliError> {
         let text = fs::read_to_string(path).map_err(|e| CliError::Io(e.to_string()))?;
         return serde_json::from_str(&text).map_err(|e| CliError::Message(e.to_string()));
     }
-    let url = registry_json_url(&config.registry_url);
+    let url = registry_json_url(&config.registry_url, &config.registry_branch);
     let text = fetch_text(&url)?;
     serde_json::from_str(&text).map_err(|e| CliError::Message(e.to_string()))
 }
@@ -21,6 +21,10 @@ pub fn load_template(config: &Config, template_path: &str) -> Result<String, Cli
         let path = Path::new(&local).join(template_path);
         return fs::read_to_string(path).map_err(|e| CliError::Io(e.to_string()));
     }
-    let url = template_url(&config.registry_url, template_path);
+    let url = template_url(
+        &config.registry_url,
+        &config.registry_branch,
+        template_path,
+    );
     fetch_text(&url)
 }

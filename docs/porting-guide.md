@@ -128,7 +128,7 @@ checkbox("Accept terms", state.accept_terms, Message::TermsToggled)
 
 ## Registry template placeholders
 
-Templates use `{{ui_module}}` for the Rust module path (derived from `ui_path`). The CLI substitutes this at render time so `use {{ui_module}}::theme::palette` becomes `use crate::ui::theme::palette`.
+Templates use `{{ui_path}}` for the Rust module path (derived from `ui_path`). The CLI substitutes this at render time so `use crate::{{ui_path}}::theme::palette` becomes `use crate::ui::theme::palette`.
 
 ## Checklist for a new component
 

@@ -1,9 +1,10 @@
-use crate::cargo_merge::{merge_iced_dependency, merge_lucide_icons_dependency};
+use crate::cargo_merge::{merge_dependencies, module_name_from_target};
 use crate::config::Config;
 use crate::error::CliError;
 use crate::patch::patch_mod_rs;
 use crate::registry_load::{load_registry, load_template};
 use crate::render::render_template;
+use std::collections::BTreeSet;
 use std::fs;
 
 pub fn run(components: Vec<String>) -> Result<(), CliError> {
@@ -27,11 +28,13 @@ pub fn run(components: Vec<String>) -> Result<(), CliError> {
     };
 
     let mut written = Vec::new();
+    let mut module_names = BTreeSet::new();
     for name in &order {
         let item = registry
             .item(name)
             .ok_or_else(|| CliError::Message(format!("missing registry item: {name}")))?;
         for file in &item.files {
+            module_names.insert(module_name_from_target(&file.target).to_string());
             let target = ui_dir.join(&file.target);
             if target.exists() {
                 eprintln!("skip existing: {}", target.display());
@@ -44,17 +47,16 @@ pub fn run(components: Vec<String>) -> Result<(), CliError> {
         }
     }
 
-    let module_names: Vec<&str> = order.iter().map(String::as_str).collect();
-    let patched = patch_mod_rs(&existing_mod, &module_names);
+    let module_refs: Vec<&str> = module_names.iter().map(String::as_str).collect();
+    let patched = patch_mod_rs(&existing_mod, &module_refs);
     fs::write(&mod_path, patched).map_err(|e| CliError::Io(e.to_string()))?;
 
     let cargo_path = project_root.join("Cargo.toml");
     let cargo = fs::read_to_string(&cargo_path).map_err(|e| CliError::Io(e.to_string()))?;
     let features = registry.collect_features(&order);
-    let mut merged = merge_iced_dependency(&cargo, &config.iced_version, &features);
-    if order.iter().any(|name| name == "icons") {
-        merged = merge_lucide_icons_dependency(&merged);
-    }
+    let add_lucide = order.iter().any(|name| name == "icons");
+    let merged = merge_dependencies(&cargo, &config.iced_version, &features, add_lucide)
+        .map_err(|e| CliError::Message(e))?;
     fs::write(&cargo_path, merged).map_err(|e| CliError::Io(e.to_string()))?;
 
     println!("Added: {}", written.join(", "));

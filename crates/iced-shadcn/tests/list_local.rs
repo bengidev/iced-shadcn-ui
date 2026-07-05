@@ -10,6 +10,11 @@ fn list_prints_component_names() {
         "[package]\nname=\"demo\"\nversion=\"0.1.0\"\nedition=\"2024\"\n",
     )
     .unwrap();
+    fs::write(
+        dir.path().join("iced-shadcn.toml"),
+        "style = \"new-york\"\nbase_color = \"neutral\"\nui_path = \"src/ui\"\niced_version = \"0.14\"\nregistry_url = \"https://github.com/bengidev/iced-shadcn-ui\"\nregistry_branch = \"main\"\n",
+    )
+    .unwrap();
 
     let registry_root = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../registry");
 

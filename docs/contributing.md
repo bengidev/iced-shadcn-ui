@@ -18,10 +18,10 @@ iced-shadcn-ui/
 
 ### 1. Create the template
 
-Add `registry/styles/new-york/<name>.rs.template`. Use `{{ui_module}}` for import paths:
+Add `registry/styles/new-york/<name>.rs.template`. Use `{{ui_path}}` for import paths:
 
 ```rust
-use {{ui_module}}::theme::palette;
+use crate::{{ui_path}}::theme::palette;
 ```
 
 Follow existing components: factory function, variant enums, `.style()` with `palette(theme)`.

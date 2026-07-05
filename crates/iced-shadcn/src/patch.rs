@@ -52,4 +52,11 @@ mod tests {
         assert!(twice.contains("pub mod card;"));
         assert_eq!(twice.matches("pub mod theme;").count(), 1);
     }
+
+    #[test]
+    fn accepts_snake_case_module_names() {
+        let output = patch_mod_rs("", &["scroll_area", "theme"]);
+        assert!(output.contains("pub mod scroll_area;"));
+        assert!(!output.contains("scroll-area"));
+    }
 }
