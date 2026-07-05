@@ -1,5 +1,5 @@
 [package]
-name = "iced-shadcn"
+name = "iced-shadcn-ui"
 version = "0.1.0"
 edition = "2024"
 description = "Add shadcn/ui-inspired components to your iced project"

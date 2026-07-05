@@ -6,7 +6,7 @@ Thank you for helping improve iced-shadcn-ui. This guide covers adding or updati
 
 ```
 iced-shadcn-ui/
-├── crates/iced-shadcn/     # CLI (published to crates.io)
+├── crates/iced-shadcn-ui/  # CLI (published to crates.io as iced-shadcn-ui)
 ├── registry/
 │   ├── registry.json       # component manifest
 │   └── styles/new-york/    # *.rs.template files
@@ -57,7 +57,7 @@ Add `docs/components/<name>.md` with a usage example.
 ### 5. Run tests
 
 ```bash
-cargo test -p iced-shadcn
+cargo test -p iced-shadcn-ui
 cargo run -p showcase
 ```
 
@@ -73,11 +73,11 @@ CLI tests cover registry parsing, dependency resolution, `mod.rs` patching, and 
 ## CLI development
 
 ```bash
-cargo build -p iced-shadcn
-cargo test -p iced-shadcn
+cargo build -p iced-shadcn-ui
+cargo test -p iced-shadcn-ui
 ```
 
-Integration tests in `crates/iced-shadcn/tests/` exercise `add` and `list` against the local registry.
+Integration tests in `crates/iced-shadcn-ui/tests/` exercise `add` and `list` against the local registry.
 
 ## Pull requests
 

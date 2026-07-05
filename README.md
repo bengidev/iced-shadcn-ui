@@ -7,7 +7,7 @@ Copy self-contained Rust source into your project with the `iced-shadcn` CLI —
 ## Quick start
 
 ```bash
-cargo install iced-shadcn
+cargo install iced-shadcn-ui
 cd your-iced-app
 iced-shadcn add button
 ```

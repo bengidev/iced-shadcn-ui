@@ -3,10 +3,10 @@
 ## Install the CLI
 
 ```bash
-cargo install iced-shadcn
+cargo install iced-shadcn-ui
 ```
 
-This installs the `iced-shadcn` binary from crates.io. Component templates are fetched from GitHub at add-time — only the CLI is published.
+This installs the `iced-shadcn` binary from crates.io (`iced-shadcn-ui` package). Component templates are fetched from GitHub at add-time — only the CLI is published.
 
 ## Add components to your project
 

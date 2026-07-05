@@ -1,5 +1,5 @@
 [workspace]
-members = ["crates/iced-shadcn", "examples/showcase"]
+members = ["crates/iced-shadcn-ui", "examples/showcase"]
 resolver = "2"
 
 [workspace.package]

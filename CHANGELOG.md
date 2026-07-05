@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- `iced-shadcn` CLI (`add`, `list`, `diff`)
+- `iced-shadcn-ui` crate on crates.io — CLI binary `iced-shadcn` (`add`, `list`, `diff`)
 - `iced-shadcn.toml` configuration with `ui_path`, style, and registry URL
 - New York / neutral theme tokens (`ShadcnPalette`) with dark and light modes
 - 14 components: `button`, `badge`, `label`, `separator`, `skeleton`, `progress`, `input`, `checkbox`, `switch`, `card`, `avatar`, `scroll-area`, `table`, `sidebar`

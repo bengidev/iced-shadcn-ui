@@ -139,6 +139,6 @@ Templates use `{{ui_path}}` for the Rust module path (derived from `ui_path`). T
 5. Add a `.rs.template` under `registry/styles/new-york/`
 6. Register in `registry/registry.json` with `registryDependencies: ["theme", "utils"]`
 7. Add a showcase page section and `docs/components/<name>.md`
-8. Run `cargo test -p iced-shadcn` and `cargo run -p showcase`
+8. Run `cargo test -p iced-shadcn-ui` and `cargo run -p showcase`
 
 See [contributing.md](contributing.md) for the full workflow.
