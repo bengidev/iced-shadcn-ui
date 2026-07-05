@@ -1,3 +1,4 @@
+mod cargo_merge;
 mod cli;
 mod config;
 mod patch;
