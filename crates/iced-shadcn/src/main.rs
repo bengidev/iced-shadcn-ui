@@ -1,6 +1,8 @@
 mod cargo_merge;
 mod cli;
 mod config;
+mod error;
+mod fetch;
 mod patch;
 mod registry;
 mod render;
