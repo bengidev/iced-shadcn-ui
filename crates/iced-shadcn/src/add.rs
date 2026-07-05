@@ -1,12 +1,10 @@
 use crate::cargo_merge::merge_iced_dependency;
 use crate::config::Config;
 use crate::error::CliError;
-use crate::fetch::{fetch_text, registry_json_url, template_url};
 use crate::patch::patch_mod_rs;
-use crate::registry::Registry;
+use crate::registry_load::{load_registry, load_template};
 use crate::render::render_template;
 use std::fs;
-use std::path::{Path, PathBuf};
 
 pub fn run(components: Vec<String>) -> Result<(), CliError> {
     let project_root = std::env::current_dir().map_err(|e| CliError::Io(e.to_string()))?;
@@ -59,24 +57,4 @@ pub fn run(components: Vec<String>) -> Result<(), CliError> {
     println!("Added: {}", written.join(", "));
     println!("Import with: use {}::*;", config.ui_module_path());
     Ok(())
-}
-
-fn load_registry(config: &Config) -> Result<Registry, CliError> {
-    if let Ok(local) = std::env::var("ICED_SHADCN_REGISTRY_DIR") {
-        let path = PathBuf::from(local).join("registry.json");
-        let text = fs::read_to_string(path).map_err(|e| CliError::Io(e.to_string()))?;
-        return serde_json::from_str(&text).map_err(|e| CliError::Message(e.to_string()));
-    }
-    let url = registry_json_url(&config.registry_url);
-    let text = fetch_text(&url)?;
-    serde_json::from_str(&text).map_err(|e| CliError::Message(e.to_string()))
-}
-
-fn load_template(config: &Config, template_path: &str) -> Result<String, CliError> {
-    if let Ok(local) = std::env::var("ICED_SHADCN_REGISTRY_DIR") {
-        let path = Path::new(&local).join(template_path);
-        return fs::read_to_string(path).map_err(|e| CliError::Io(e.to_string()));
-    }
-    let url = template_url(&config.registry_url, template_path);
-    fetch_text(&url)
 }
