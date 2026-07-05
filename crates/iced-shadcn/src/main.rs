@@ -1,3 +1,4 @@
+mod add;
 mod cargo_merge;
 mod cli;
 mod config;
@@ -13,10 +14,7 @@ use cli::{Cli, Commands};
 fn main() {
     let cli = Cli::parse();
     let result: Result<(), Box<dyn std::error::Error>> = match cli.command {
-        Commands::Add { components } => {
-            eprintln!("add not yet implemented: {components:?}");
-            Ok(())
-        }
+        Commands::Add { components } => add::run(components).map_err(Into::into),
         Commands::List => {
             eprintln!("list not yet implemented");
             Ok(())
