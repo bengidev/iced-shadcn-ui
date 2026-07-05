@@ -3,6 +3,8 @@ mod ui;
 
 use iced::widget::{column, row, text, toggler};
 use iced::{application, Element, Theme};
+use lucide_icons::Icon;
+use ui::icons::LUCIDE_FONT_BYTES;
 use ui::theme::{shadcn_dark_theme, shadcn_light_theme};
 
 #[derive(Default)]
@@ -31,6 +33,7 @@ fn main() -> iced::Result {
     application(App::default, update, view)
         .theme(App::theme)
         .title("iced-shadcn showcase")
+        .font(LUCIDE_FONT_BYTES)
         .run()
 }
 
@@ -56,18 +59,22 @@ fn view(state: &App) -> Element<'_, Message> {
     let nav_items = [
         ui::sidebar::SidebarItem {
             label: "Buttons",
+            icon: Icon::MousePointerClick,
             active: state.page == Page::Buttons,
         },
         ui::sidebar::SidebarItem {
             label: "Inputs",
+            icon: Icon::TextCursorInput,
             active: state.page == Page::Inputs,
         },
         ui::sidebar::SidebarItem {
             label: "Layout",
+            icon: Icon::LayoutGrid,
             active: state.page == Page::Layout,
         },
         ui::sidebar::SidebarItem {
             label: "Data",
+            icon: Icon::Table,
             active: state.page == Page::Data,
         },
     ];

@@ -1,14 +1,9 @@
 //! shadcn/ui Button for iced.
-//!
-//! ```rust
-//! ui::button("Save")
-//!     .variant(ButtonVariant::Default)
-//!     .on_press(Message::Save)
-//! ```
 
+use crate::ui::icons::{self, Icon};
 use crate::ui::theme::{palette, ShadcnPalette};
 use crate::ui::utils::border;
-use iced::widget::{button as iced_button, Button};
+use iced::widget::{button as iced_button, row, Button};
 use iced::{Background, Element, Theme};
 
 #[derive(Debug, Clone, Copy, Default, PartialEq, Eq)]
@@ -85,6 +80,21 @@ pub fn button<'a, Message: Clone + 'a>(
     label: impl Into<Element<'a, Message, Theme>>,
 ) -> ShadcnButton<'a, Message> {
     ShadcnButton::new(label)
+}
+
+pub fn icon_button<'a, Message: Clone + 'a>(icon: Icon) -> ShadcnButton<'a, Message> {
+    ShadcnButton::new(icons::themed_icon(icon, 16.0)).size(ButtonSize::Icon)
+}
+
+pub fn button_with_icon<'a, Message: Clone + 'a>(
+    icon: Icon,
+    label: &'a str,
+) -> ShadcnButton<'a, Message> {
+    ShadcnButton::new(
+        row![icons::themed_icon(icon, 16.0), label]
+            .spacing(8)
+            .align_y(iced::Alignment::Center),
+    )
 }
 
 fn styled(

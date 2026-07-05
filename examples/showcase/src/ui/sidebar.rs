@@ -1,10 +1,12 @@
+use crate::ui::icons::{self, Icon};
 use crate::ui::theme::palette;
-use iced::widget::{column, container, mouse_area, text, Column};
+use iced::widget::{column, container, mouse_area, row, text, Column};
 use iced::{Background, Element, Length, Theme};
 
 #[derive(Clone, Copy)]
 pub struct SidebarItem {
     pub label: &'static str,
+    pub icon: Icon,
     pub active: bool,
 }
 
@@ -20,9 +22,19 @@ pub fn sidebar<'a, Message: Clone + 'a>(
             .enumerate()
             .map(|(idx, item)| {
                 let msg = on_select.clone()(idx);
-                let item_label = if collapsed { "•" } else { item.label };
                 let active = item.active;
-                let entry = container(text(item_label))
+                let content: Element<'a, Message> = if collapsed {
+                    icons::themed_icon(item.icon, 18.0)
+                } else {
+                    row![
+                        icons::themed_icon(item.icon, 16.0),
+                        text(item.label),
+                    ]
+                    .spacing(10)
+                    .align_y(iced::Alignment::Center)
+                    .into()
+                };
+                let entry = container(content)
                     .width(Length::Fill)
                     .padding(10)
                     .style(move |theme| {
