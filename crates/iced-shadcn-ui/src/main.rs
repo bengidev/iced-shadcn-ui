@@ -1,3 +1,14 @@
+//! # iced-shadcn-ui
+//!
+//! CLI for adding [shadcn/ui](https://ui.shadcn.com)-inspired components to
+//! [iced](https://github.com/iced-rs/iced) 0.14 projects. Components are copied as
+//! self-contained Rust source into your project — you own the files.
+//!
+//! Install with `cargo install iced-shadcn-ui`; the binary is `iced-shadcn`.
+//!
+//! See the [crate README](https://docs.rs/iced-shadcn-ui) for usage, configuration,
+//! and links to the full documentation on GitHub.
+
 mod add;
 mod cargo_merge;
 mod cli;

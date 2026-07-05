@@ -50,6 +50,7 @@ cargo run -p showcase
 
 ## Documentation
 
+- [Crate README](crates/iced-shadcn-ui/README.md) — shown on [crates.io](https://crates.io/crates/iced-shadcn-ui) and [docs.rs](https://docs.rs/iced-shadcn-ui)
 - [Installation](docs/installation.md)
 - [Theming](docs/theming.md)
 - [Porting guide](docs/porting-guide.md) — translate shadcn/ui to iced
