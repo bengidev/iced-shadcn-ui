@@ -5,10 +5,18 @@
 //!     .variant(ButtonVariant::Default)
 //!     .on_press(Message::Save)
 //! ```
+//!
+//! Icon-only buttons use [Lucide](https://lucide.dev/) icons:
+//!
+//! ```rust
+//! {{ui_path}}::button::icon_button(Icon::Plus)
+//!     .on_press(Message::Add)
+//! ```
 
+use crate::{{ui_path}}::icons::{self, Icon};
 use crate::{{ui_path}}::theme::{palette, ShadcnPalette};
 use crate::{{ui_path}}::utils::border;
-use iced::widget::{button, Button};
+use iced::widget::{button, row, Button};
 use iced::{Background, Element, Theme};
 
 #[derive(Debug, Clone, Copy, Default)]
@@ -85,6 +93,23 @@ pub fn button<'a, Message: Clone + 'a>(
     label: impl Into<Element<'a, Message, Theme>>,
 ) -> ShadcnButton<'a, Message> {
     ShadcnButton::new(label)
+}
+
+/// Lucide icon-only button (shadcn `size="icon"`).
+pub fn icon_button<'a, Message: Clone + 'a>(icon: Icon) -> ShadcnButton<'a, Message> {
+    ShadcnButton::new(icons::themed_icon(icon, 16.0)).size(ButtonSize::Icon)
+}
+
+/// Text label with a leading Lucide icon.
+pub fn button_with_icon<'a, Message: Clone + 'a>(
+    icon: Icon,
+    label: &'a str,
+) -> ShadcnButton<'a, Message> {
+    ShadcnButton::new(
+        row![icons::themed_icon(icon, 16.0), label]
+            .spacing(8)
+            .align_y(iced::Alignment::Center),
+    )
 }
 
 fn styled(
