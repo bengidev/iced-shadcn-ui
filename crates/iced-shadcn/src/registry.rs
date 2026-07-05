@@ -1,5 +1,5 @@
 use serde::Deserialize;
-use std::collections::{HashMap, HashSet, VecDeque};
+use std::collections::{HashMap, HashSet};
 
 #[derive(Debug, Deserialize)]
 pub struct Registry {
@@ -41,12 +41,13 @@ impl Registry {
 
     pub fn resolve_add_order(&self, requested: &[String]) -> Result<Vec<String>, RegistryError> {
         let mut seen = HashSet::new();
+        let mut visiting = HashSet::new();
         let mut order = Vec::new();
         let map: HashMap<&str, &RegistryItem> =
             self.items.iter().map(|i| (i.name.as_str(), i)).collect();
 
         for name in requested {
-            Self::visit(name, &map, &mut seen, &mut order)?;
+            Self::visit(name, &map, &mut seen, &mut visiting, &mut order)?;
         }
         Ok(order)
     }
@@ -55,43 +56,26 @@ impl Registry {
         name: &str,
         map: &HashMap<&str, &'a RegistryItem>,
         seen: &mut HashSet<String>,
+        visiting: &mut HashSet<String>,
         order: &mut Vec<String>,
     ) -> Result<(), RegistryError> {
         if seen.contains(name) {
             return Ok(());
         }
+        if !visiting.insert(name.to_string()) {
+            return Err(RegistryError::CircularDependency(name.into()));
+        }
+
         let item = map
             .get(name)
             .ok_or_else(|| RegistryError::UnknownComponent(name.into()))?;
-
-        let mut stack = vec![name.to_string()];
-        let mut visiting = HashSet::new();
-        let mut queue = VecDeque::from([name.to_string()]);
-
-        while let Some(current) = queue.pop_front() {
-            if seen.contains(&current) {
-                continue;
-            }
-            if visiting.contains(&current) {
-                return Err(RegistryError::CircularDependency(current));
-            }
-            visiting.insert(current.clone());
-            let current_item = map
-                .get(current.as_str())
-                .ok_or_else(|| RegistryError::UnknownComponent(current.clone()))?;
-            for dep in &current_item.registry_dependencies {
-                if !seen.contains(dep) {
-                    queue.push_back(dep.clone());
-                }
-            }
-            stack.push(current);
+        for dep in &item.registry_dependencies {
+            Self::visit(dep, map, seen, visiting, order)?;
         }
 
-        while let Some(current) = stack.pop() {
-            if seen.insert(current.clone()) {
-                order.push(current);
-            }
-        }
+        visiting.remove(name);
+        seen.insert(name.to_string());
+        order.push(name.to_string());
         Ok(())
     }
 
