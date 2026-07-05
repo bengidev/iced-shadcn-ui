@@ -72,6 +72,33 @@
       ],
       "registryDependencies": ["theme", "utils"],
       "features": []
+    },
+    {
+      "name": "input",
+      "type": "registry:component",
+      "files": [
+        { "path": "styles/new-york/input.rs.template", "target": "input.rs" }
+      ],
+      "registryDependencies": ["theme", "utils"],
+      "features": []
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:component",
+      "files": [
+        { "path": "styles/new-york/checkbox.rs.template", "target": "checkbox.rs" }
+      ],
+      "registryDependencies": ["theme", "utils"],
+      "features": []
+    },
+    {
+      "name": "switch",
+      "type": "registry:component",
+      "files": [
+        { "path": "styles/new-york/switch.rs.template", "target": "switch.rs" }
+      ],
+      "registryDependencies": ["theme", "utils"],
+      "features": []
     }
   ]
 }

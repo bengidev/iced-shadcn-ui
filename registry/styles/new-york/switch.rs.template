@@ -1,0 +1,23 @@
+use iced::widget::toggler;
+use iced::{Element, Theme};
+use crate::{{ui_path}}::theme::palette;
+
+pub fn switch<'a, Message: Clone + 'a>(
+    enabled: bool,
+    label: &'a str,
+    on_toggle: impl Fn(bool) -> Message + 'a,
+) -> Element<'a, Message, Theme> {
+    toggler(enabled)
+        .label(label)
+        .on_toggle(on_toggle)
+        .style(|theme, status| {
+            let p = palette(theme);
+            toggler::Style {
+                background: iced::Background::Color(if enabled { p.primary } else { p.input }),
+                background_border: iced::Border { color: p.border, width: 1.0, radius: 999.0.into() },
+                foreground: iced::Background::Color(p.background),
+                ..toggler::default(theme, status)
+            }
+        })
+        .into()
+}

@@ -1,0 +1,23 @@
+use iced::widget::checkbox;
+use iced::{Element, Theme};
+use crate::{{ui_path}}::theme::palette;
+
+pub fn checkbox<'a, Message: Clone + 'a>(
+    label: &'a str,
+    checked: bool,
+    on_toggle: impl Fn(bool) -> Message + 'a,
+) -> Element<'a, Message, Theme> {
+    checkbox(label, checked)
+        .on_toggle(on_toggle)
+        .style(|theme, status| {
+            let p = palette(theme);
+            checkbox::Style {
+                icon_color: p.primary_foreground,
+                background: iced::Background::Color(p.background),
+                border: iced::Border { color: p.primary, width: 1.0, radius: 4.0.into() },
+                text_color: Some(p.foreground),
+                ..checkbox::default(theme, status)
+            }
+        })
+        .into()
+}
