@@ -1,5 +1,6 @@
 mod cli;
 mod config;
+mod patch;
 mod registry;
 mod render;
 
