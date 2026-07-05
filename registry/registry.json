@@ -104,7 +104,7 @@
       "name": "scroll-area",
       "type": "registry:component",
       "files": [
-        { "path": "styles/new-york/scroll-area.rs.template", "target": "scroll-area.rs" }
+        { "path": "styles/new-york/scroll-area.rs.template", "target": "scroll_area.rs" }
       ],
       "registryDependencies": ["theme", "utils"],
       "features": []

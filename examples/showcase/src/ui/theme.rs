@@ -1,0 +1,128 @@
+//! shadcn/ui theme tokens for iced 0.14 (new-york / neutral).
+//!
+//! ```rust
+//! fn theme(app: &App) -> Theme {
+//!     if app.dark_mode { shadcn_dark_theme() } else { shadcn_light_theme() }
+//! }
+//! ```
+
+use iced::color;
+use iced::theme::Palette;
+use iced::{Color, Theme};
+
+#[derive(Debug, Clone, Copy)]
+pub struct ShadcnPalette {
+    pub background: Color,
+    pub foreground: Color,
+    pub card: Color,
+    pub card_foreground: Color,
+    pub primary: Color,
+    pub primary_foreground: Color,
+    pub secondary: Color,
+    pub secondary_foreground: Color,
+    pub muted: Color,
+    pub muted_foreground: Color,
+    pub accent: Color,
+    pub accent_foreground: Color,
+    pub destructive: Color,
+    pub border: Color,
+    pub input: Color,
+    pub ring: Color,
+    pub sidebar: Color,
+    pub sidebar_foreground: Color,
+    pub sidebar_primary: Color,
+    pub sidebar_primary_foreground: Color,
+    pub sidebar_accent: Color,
+    pub sidebar_accent_foreground: Color,
+    pub sidebar_border: Color,
+    pub sidebar_ring: Color,
+    pub radius_sm: f32,
+    pub radius_md: f32,
+    pub radius_lg: f32,
+}
+
+pub const LIGHT: ShadcnPalette = ShadcnPalette {
+    background: color!(0xffffff),
+    foreground: color!(0x0a0a0a),
+    card: color!(0xffffff),
+    card_foreground: color!(0x0a0a0a),
+    primary: color!(0x171717),
+    primary_foreground: color!(0xfafafa),
+    secondary: color!(0xf5f5f5),
+    secondary_foreground: color!(0x171717),
+    muted: color!(0xf5f5f5),
+    muted_foreground: color!(0x737373),
+    accent: color!(0xf5f5f5),
+    accent_foreground: color!(0x171717),
+    destructive: color!(0xef4444),
+    border: color!(0xe5e5e5),
+    input: color!(0xe5e5e5),
+    ring: color!(0xa3a3a3),
+    sidebar: color!(0xFAFAFA),
+    sidebar_foreground: color!(0x0a0a0a),
+    sidebar_primary: color!(0x171717),
+    sidebar_primary_foreground: color!(0xFAFAFA),
+    sidebar_accent: color!(0xf5f5f5),
+    sidebar_accent_foreground: color!(0x171717),
+    sidebar_border: color!(0xe5e5e5),
+    sidebar_ring: color!(0xa3a3a3),
+    radius_sm: 6.0,
+    radius_md: 8.0,
+    radius_lg: 10.0,
+};
+
+pub const DARK: ShadcnPalette = ShadcnPalette {
+    background: color!(0x0a0a0a),
+    foreground: color!(0xFAFAFA),
+    card: color!(0x171717),
+    card_foreground: color!(0xFAFAFA),
+    primary: color!(0xe5e5e5),
+    primary_foreground: color!(0x171717),
+    secondary: color!(0x262626),
+    secondary_foreground: color!(0xFAFAFA),
+    muted: color!(0x262626),
+    muted_foreground: color!(0xa3a3a3),
+    accent: color!(0x262626),
+    accent_foreground: color!(0xFAFAFA),
+    destructive: color!(0xf87171),
+    border: color!(0xffffff, 0.10),
+    input: color!(0xffffff, 0.15),
+    ring: color!(0x737373),
+    sidebar: color!(0x171717),
+    sidebar_foreground: color!(0xFAFAFA),
+    sidebar_primary: color!(0x6366f1),
+    sidebar_primary_foreground: color!(0xFAFAFA),
+    sidebar_accent: color!(0x262626),
+    sidebar_accent_foreground: color!(0xFAFAFA),
+    sidebar_border: color!(0xffffff, 0.10),
+    sidebar_ring: color!(0x737373),
+    radius_sm: 6.0,
+    radius_md: 8.0,
+    radius_lg: 10.0,
+};
+
+pub fn palette(theme: &Theme) -> ShadcnPalette {
+    match theme {
+        Theme::Dark => DARK,
+        _ => LIGHT,
+    }
+}
+
+pub fn shadcn_light_theme() -> Theme {
+    Theme::Light
+}
+
+pub fn shadcn_dark_theme() -> Theme {
+    Theme::Dark
+}
+
+pub fn palette_to_iced(p: ShadcnPalette) -> Palette {
+    Palette {
+        background: p.background,
+        text: p.foreground,
+        primary: p.primary,
+        success: color!(0x22c55e),
+        warning: color!(0xf59e0b),
+        danger: p.destructive,
+    }
+}
