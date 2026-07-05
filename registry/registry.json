@@ -1,0 +1,32 @@
+{
+  "$schema": "./schema.json",
+  "name": "iced-shadcn",
+  "homepage": "https://github.com/bengidev/iced-shadcn-ui",
+  "items": [
+    {
+      "name": "theme",
+      "type": "registry:theme",
+      "files": [
+        { "path": "styles/new-york/theme.rs.template", "target": "theme.rs" }
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "files": [
+        { "path": "styles/new-york/utils.rs.template", "target": "utils.rs" }
+      ],
+      "registryDependencies": ["theme"]
+    },
+    {
+      "name": "button",
+      "type": "registry:component",
+      "files": [
+        { "path": "styles/new-york/button.rs.template", "target": "button.rs" }
+      ],
+      "registryDependencies": ["theme", "utils"],
+      "features": []
+    }
+  ]
+}
