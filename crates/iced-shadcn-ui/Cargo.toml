@@ -8,7 +8,7 @@ readme = "README.md"
 documentation = "https://docs.rs/iced-shadcn-ui"
 homepage = "https://github.com/bengidev/iced-shadcn-ui"
 repository = "https://github.com/bengidev/iced-shadcn-ui"
-keywords = ["iced", "gui", "shadcn", "ui", "widgets", "cli"]
+keywords = ["iced", "gui", "shadcn", "ui", "cli"]
 categories = ["command-line-utilities", "gui"]
 
 [[bin]]
