@@ -1,0 +1,12 @@
+use iced::widget::{row, rule, Row};
+use iced::{Element, Length, Theme};
+use crate::{{ui_path}}::theme::palette;
+
+pub fn separator<'a, Message: 'a>() -> Element<'a, Message, Theme> {
+    row![rule::horizontal(1).style(|theme| {
+        let p = palette(theme);
+        rule::Style { color: p.border, ..Default::default() }
+    })]
+    .width(Length::Fill)
+    .into()
+}

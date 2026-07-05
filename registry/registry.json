@@ -27,6 +27,51 @@
       ],
       "registryDependencies": ["theme", "utils"],
       "features": []
+    },
+    {
+      "name": "badge",
+      "type": "registry:component",
+      "files": [
+        { "path": "styles/new-york/badge.rs.template", "target": "badge.rs" }
+      ],
+      "registryDependencies": ["theme", "utils"],
+      "features": []
+    },
+    {
+      "name": "label",
+      "type": "registry:component",
+      "files": [
+        { "path": "styles/new-york/label.rs.template", "target": "label.rs" }
+      ],
+      "registryDependencies": ["theme", "utils"],
+      "features": []
+    },
+    {
+      "name": "separator",
+      "type": "registry:component",
+      "files": [
+        { "path": "styles/new-york/separator.rs.template", "target": "separator.rs" }
+      ],
+      "registryDependencies": ["theme", "utils"],
+      "features": []
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:component",
+      "files": [
+        { "path": "styles/new-york/skeleton.rs.template", "target": "skeleton.rs" }
+      ],
+      "registryDependencies": ["theme", "utils"],
+      "features": []
+    },
+    {
+      "name": "progress",
+      "type": "registry:component",
+      "files": [
+        { "path": "styles/new-york/progress.rs.template", "target": "progress.rs" }
+      ],
+      "registryDependencies": ["theme", "utils"],
+      "features": []
     }
   ]
 }
