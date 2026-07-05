@@ -39,7 +39,7 @@ impl Registry {
         self.items.iter().find(|i| i.name == name)
     }
 
-    pub fn resolve_add_order(&self, requested: &[&str]) -> Result<Vec<String>, RegistryError> {
+    pub fn resolve_add_order(&self, requested: &[String]) -> Result<Vec<String>, RegistryError> {
         let mut seen = HashSet::new();
         let mut order = Vec::new();
         let map: HashMap<&str, &RegistryItem> =
@@ -126,7 +126,7 @@ mod tests {
     #[test]
     fn resolves_transitive_dependencies() {
         let registry: Registry = serde_json::from_str(SAMPLE).unwrap();
-        let ordered = registry.resolve_add_order(&["button"]).unwrap();
+        let ordered = registry.resolve_add_order(&["button".to_string()]).unwrap();
         assert_eq!(ordered, vec!["theme", "button"]);
     }
 }
